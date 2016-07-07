@@ -1,5 +1,5 @@
-        {{-- SinglePic --}}
-        $('.uploadPic').click(function(){
+        {{-- SingleFile --}}
+        $('.uploadFile').click(function(){
             var ele = $(this).data('id');
             $.layer({
                     type : 2,

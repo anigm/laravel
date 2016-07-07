@@ -35,7 +35,7 @@
                 </div>
                 <br>
                 <div class="control-group {!! $errors->has('tag') ? 'has-error' : '' !!}">
-                    <label class="control-label" for="title">标签</label>
+                    <label class="control-label" for="title">关键字</label>
                     <div class="controls"> {!! Form::textarea('tag', '', array('id' => 'tag')) !!}
                     </div>
                 </div>
@@ -54,6 +54,19 @@
                     });
                 </script>
                 <br>
+                <div class="form-group">
+                    <label>文件
+                        <a href="javascript:void(0);" class="uploadFile" data-id="thumb"><i class="fa fa-fw fa-picture-o" title="上传"></i></a>
+                        <a href="javascript:void(0);" class="previewFile" data-id="thumb"><i class="fa fa-fw fa-eye" title="预览"></i></a>
+                    </label>
+                    <input type="text" class="form-control" id="thumb" name="thumb" placeholder="文件地址：如{{ url('') }}/logo.png" readonly="readonly">
+                </div>
+                <script type="text/javascript">
+                    $(document).ready(function(){
+                        @include('admin.vendor.endSingleFile')
+                    });
+                </script>
+                <br>
                 <div class="control-group {!! $errors->has('description') ? 'has-error' : '' !!}">
                     <label class="control-label" for="description">内容</label>
                     <div class="controls"> {!! Form::textarea('description', null, array('class'=>'form-control', 'id' => 'description','name' => 'description', 'placeholder'=>'Description')) !!}</div>
@@ -66,10 +79,11 @@
                 <script src="{{ asset('plugin/bootstrap_datepicker/js/locales/bootstrap-datetimepicker.zh-CN.js') }}"></script>
                 <script type="text/javascript">
                     $("#datetime").datetimepicker({
-                        format: "yyyy-mm-dd hh:ii:ss",
+                        minView: 2,
+                        format: "yyyy-mm-dd",
                         autoclose: true,
                         todayBtn: true,
-                        minuteStep: 10,
+                        //minuteStep: 10,
                         language: "zh-CN",
                     });
                 </script>
@@ -82,7 +96,7 @@
                     $(function ()
                     {
                         $('#tag').tagEditor({
-                            placeholder: '输入 标签 ...',
+                            placeholder: '输入 description ...',
                             autocomplete: {source: googleSuggest, minLength: 3, delay: 250, html: true, position: {collision: 'flip'}}
                         });
                     });
