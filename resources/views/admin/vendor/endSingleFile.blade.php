@@ -9,7 +9,7 @@
                     closeBtn: false,
                     shadeClose: true,
                     fix: false,
-                    iframe : {src: '{{ route('admin.mail.getUploadfile') }}?from='+ ele},
+                    iframe : {src: '{{ route('admin.public.getuploadfile') }}?from='+ ele},
                     area : ['600px' , '250px'],
                     offset : ['', ''],
                     success: function(layero){

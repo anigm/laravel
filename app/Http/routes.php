@@ -118,12 +118,18 @@ Route::group(['middleware' => ['web'], 'namespace' => 'Admin', 'prefix' => 'admi
 //    Route::get('img', 'MailController@upload');
 //    Route::post('img', 'MailController@postUpload');
 
-    Route::get('mail/getupload', ['as' => 'admin.mail.getupload', 'uses' => 'MailController@getUpload']);
-    Route::post('mail/postupload', ['as' => 'admin.mail.postupload', 'uses' => 'MailController@postUpload']);
+//    Route::get('mail/getupload', ['as' => 'admin.mail.getupload', 'uses' => 'MailController@getUpload']);
+//    Route::post('mail/postupload', ['as' => 'admin.mail.postupload', 'uses' => 'MailController@postUpload']);
     Route::post('mail/seed', ['as' => 'admin.mail.seed', 'uses' => 'MailController@seed']);
 
-    Route::get('mail/getUploadfile', ['as' => 'admin.mail.getUploadfile', 'uses' => 'MailController@getUploadfile']);
-    Route::post('mail/postuploadfile', ['as' => 'admin.mail.postuploadfile', 'uses' => 'MailController@postuploadfile']);
+//    Route::get('mail/getUploadfile', ['as' => 'admin.mail.getUploadfile', 'uses' => 'MailController@getUploadfile']);
+//    Route::post('mail/postuploadfile', ['as' => 'admin.mail.postuploadfile', 'uses' => 'MailController@postuploadfile']);
+
+    Route::get('public/getuploadpic', ['as' => 'admin.public.getuploadpic', 'uses' => 'PublicController@getuploadpic']);
+    Route::post('public/postuploadpic', ['as' => 'admin.public.postuploadpic', 'uses' => 'PublicController@postuploadpic']);
+
+    Route::get('public/getuploadfile', ['as' => 'admin.public.getuploadfile', 'uses' => 'PublicController@getuploadfile']);
+    Route::post('public/postuploadfile', ['as' => 'admin.public.postuploadfile', 'uses' => 'PublicController@postuploadfile']);
 
     //Route::get('article/recycle', 'ArticleController@recycle');
     //Route::get('article/destroy/{id}/',['as'=>'admin.article.destroy','uses'=>'ArticleController@destroy']);

@@ -24,7 +24,7 @@ class OneController extends BaseController
     }
     public function store()
     {
-        $ones = One::create(['title'=>Input::get('title'),'datetime'=>Input::get('datetime'),'tag'=>Input::get('tag'),'description'=>Input::get('description'),'thumb'=>Input::get('thumb'),'file'=>Input::get('file')]);
+        $ones = One::create(['title'=>Input::get('title'),'datetime'=>Input::get('datetime'),'tag'=>Input::get('tag'),'description'=>Input::get('description'),'thumb'=>Input::get('thumb'),'file'=>Input::get('file'),'user_id'=>Input::get('user_id')]);
         if($ones)
         {
             Toastr::success('添加成功!');
@@ -49,12 +49,22 @@ class OneController extends BaseController
 //            Toastr::error('请添加时间!');
 //            return redirect('admin/blog')->with('message', '请添加时间！');
 //        }
-        $thumbs = Input::get('thumbs');
-        $istrue=@unlink($thumbs);
-        if($istrue)
+        $ones = One::findOrFail($id);
+        if($ones)
         {
-            $ones = One::findOrFail($id);
-            $one = $ones->update(['title'=>Input::get('title'),'datetime'=>Input::get('datetime'),'tag'=>Input::get('tag'),'description'=>Input::get('description'),'thumb'=>Input::get('thumb')]);
+            $thumbs=Input::get('thumb');
+            $files =Input::get('file');
+            if($ones['thumb'])
+            {
+                @unlink($ones['thumb']);
+                $thumbs='';
+            }
+            if($ones['file'])
+            {
+                @unlink($ones['file']);
+                $files='';
+            }
+            $one = $ones->update(['title'=>Input::get('title'),'datetime'=>Input::get('datetime'),'tag'=>Input::get('tag'),'description'=>Input::get('description'),'thumb'=>$thumbs,'file'=>$files,'user_id'=>Input::get('user_id')]);
             if($one)
             {
                 Toastr::success('修改成功!');
@@ -68,8 +78,8 @@ class OneController extends BaseController
         }
         else
         {
-            Toastr::error('修改失败!');
-            return redirect('admin/one')->with('message', '修改失败！');
+            Toastr::error('非法操作!');
+            return redirect('admin/one')->with('message', '单页非法操作！');
         }
     }
     public function destroy($id)

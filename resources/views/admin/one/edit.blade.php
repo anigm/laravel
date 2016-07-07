@@ -34,6 +34,12 @@
                     </div>
                 </div>
                 <br>
+                <div class="control-group {!! $errors->has('tag') ? 'has-error' : '' !!}">
+                    <label class="control-label" for="title">关键字</label>
+                    <div class="controls"> {!! Form::textarea('tag', $ones->tag, array('id' => 'tag')) !!}
+                    </div>
+                </div>
+                <br>
                 <script src="{{ asset('plugin/layer/layer.min.js') }}"></script>
                 <div class="form-group">
                     <label>缩略图
@@ -42,18 +48,24 @@
                     </label>
                     <input type="text" class="form-control" value="{{$ones->thumb}}" id="thumb" name="thumb" placeholder="缩略图地址：如{{ url('') }}/logo.png" readonly="readonly">
                 </div>
-                {!! Form::hidden('thumbs', $ones->thumb, array('id' => 'thumbs')) !!}
                 <script type="text/javascript">
                     $(document).ready(function(){
                         @include('admin.vendor.endSinglePic')
                     });
                 </script>
                 <br>
-                <div class="control-group {!! $errors->has('tag') ? 'has-error' : '' !!}">
-                    <label class="control-label" for="title">标签</label>
-                    <div class="controls"> {!! Form::textarea('tag', $ones->tag, array('id' => 'tag')) !!}
-                    </div>
+                <div class="form-group">
+                    <label>文件
+                        <a href="javascript:void(0);" class="uploadFile" data-id="file"><i class="fa fa-fw fa-picture-o" title="上传"></i></a>
+                        <a href="javascript:void(0);" class="previewFile" data-id="file"><i class="fa fa-fw fa-eye" title="预览"></i></a>
+                    </label>
+                    <input type="text" class="form-control" value="{{$ones->file}}" id="file" name="file" placeholder="缩略图地址：如{{ url('') }}/1.rar" readonly="readonly">
                 </div>
+                <script type="text/javascript">
+                    $(document).ready(function(){
+                        @include('admin.vendor.endSingleFile')
+                    });
+                </script>
                 <br>
                 <div class="control-group {!! $errors->has('description') ? 'has-error' : '' !!}">
                     <label class="control-label" for="description">内容</label>
@@ -61,16 +73,17 @@
                     @include('admin.vendor.endCKEditor')
                 </div>
                 <br>
+                <input type="hidden" name="user_id" value="{{Auth::guard('admin')->user()->id}}">
                 {!! Form::submit('提交', array('class' => 'btn btn-success')) !!}
                 {!! Form::close() !!}
                 <script src="{{ asset('plugin/bootstrap_datepicker/js/bootstrap-datetimepicker.min.js') }}"></script>
                 <script src="{{ asset('plugin/bootstrap_datepicker/js/locales/bootstrap-datetimepicker.zh-CN.js') }}"></script>
                 <script type="text/javascript">
                     $("#datetime").datetimepicker({
-                        format: "yyyy-mm-dd hh:ii:ss",
+                        minView: 2,
+                        format: "yyyy-mm-dd",
                         autoclose: true,
                         todayBtn: true,
-                        minuteStep: 10,
                         language: "zh-CN",
                     });
                 </script>

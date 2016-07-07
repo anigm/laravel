@@ -56,8 +56,8 @@
                 <br>
                 <div class="form-group">
                     <label>文件
-                        <a href="javascript:void(0);" class="uploadFile" data-id="thumb"><i class="fa fa-fw fa-picture-o" title="上传"></i></a>
-                        <a href="javascript:void(0);" class="previewFile" data-id="thumb"><i class="fa fa-fw fa-eye" title="预览"></i></a>
+                        <a href="javascript:void(0);" class="uploadFile" data-id="file"><i class="fa fa-fw fa-picture-o" title="上传"></i></a>
+                        <a href="javascript:void(0);" class="previewFile" data-id="file"><i class="fa fa-fw fa-eye" title="预览"></i></a>
                     </label>
                     <input type="text" class="form-control" id="file" name="file" placeholder="文件地址：如{{ url('') }}/1.rar" readonly="readonly">
                 </div>
@@ -73,6 +73,7 @@
                     @include('admin.vendor.endCKEditor')
                 </div>
                 <br>
+                <input type="hidden" name="user_id" value="{{Auth::guard('admin')->user()->id}}">
                 {!! Form::submit('提交', array('class' => 'btn btn-success')) !!}
                 {!! Form::close() !!}
                 <script src="{{ asset('plugin/bootstrap_datepicker/js/bootstrap-datetimepicker.min.js') }}"></script>
@@ -83,7 +84,6 @@
                         format: "yyyy-mm-dd",
                         autoclose: true,
                         todayBtn: true,
-                        //minuteStep: 10,
                         language: "zh-CN",
                     });
                 </script>

@@ -6,5 +6,5 @@ class One extends Model
 {
     use SoftDeletes;
     protected $dates = ['deleted_at'];
-    protected $fillable = ['title','description','keys','datetime','thumb','file'];
+    protected $fillable = ['title','description','tag','datetime','thumb','file','user_id'];
 }

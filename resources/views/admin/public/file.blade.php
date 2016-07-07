@@ -56,9 +56,9 @@
                 <div class="validation_tips_area" style="display: none;">
                     <div class="tips_text"><p class="be_happy"><i class="fa fa-smile-o"></i> 上传图片成功！</p><p class="info_text small_text">本提示栏2秒之后自动关闭！</p></div>
                 </div>
-                <form method="post" action="{{ route('admin.public.postuploadpic') }}" accept-charset="utf-8" enctype="multipart/form-data" id="uploadpic">
+                <form method="post" action="{{ route('admin.public.postuploadfile') }}" accept-charset="utf-8" enctype="multipart/form-data" id="uploadfile">
                     <div class="upload_picture_form">
-                        <div class="form-group"><label>上传图片文件</label><input accept=".jpg,.png,.gif,.bmp" name="picture" type="file"></div>
+                        <div class="form-group"><label>上传图片文件</label><input accept=".rar,.gz,.pdf,.doc" name="picture" type="file"></div>
                         <button type="submit" class="btn btn-primary" id="uploadPicSubmit">上传</button>
                     </div>
                 </form>
@@ -91,7 +91,7 @@
                     }, 2000);
                     if (data.status === 1)  //成功
                     {
-                        var from = 'thumb';
+                        var from = 'file';
                         {{--var from = '{{ Input::get('from','thumb') }}';--}}
                         parent.$('#' + from).val(data.info);  //回调图片地址到父窗口
                         parent.layer.close(index);
@@ -110,7 +110,7 @@
                     //setTimeout("location.reload()",1000);
                 }
             };
-            $('#uploadpic').ajaxForm(options);
+            $('#uploadfile').ajaxForm(options);
         });
     </script>
 @endsection
