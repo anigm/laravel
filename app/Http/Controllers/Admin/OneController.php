@@ -24,7 +24,7 @@ class OneController extends BaseController
     }
     public function store()
     {
-        $ones = One::create(['title'=>Input::get('title'),'datetime'=>Input::get('datetime'),'tag'=>Input::get('tag'),'description'=>Input::get('description'),'thumb'=>Input::get('thumb')]);
+        $ones = One::create(['title'=>Input::get('title'),'datetime'=>Input::get('datetime'),'tag'=>Input::get('tag'),'description'=>Input::get('description'),'thumb'=>Input::get('thumb'),'file'=>Input::get('file')]);
         if($ones)
         {
             Toastr::success('添加成功!');

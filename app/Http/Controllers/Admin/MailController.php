@@ -132,10 +132,15 @@ class MailController extends BaseController
       //return view('back.exceptions.jump', ['exception' => '非法请求，不予处理！']);
     }
   }
+  public function getUploadfile()
+  {
+    return view('admin.upload.file');
+  }
   public function postUploadFile(Request $request)
   {
     if ($request->ajax())
     {
+      echo '1';
       $json = [
           'status' => 0,
           'info' => '失败原因为：<span class="text_error">不存在待上传的文件</span>',
@@ -164,7 +169,7 @@ class MailController extends BaseController
           // 因本人生产服务器禁用掉fileinfo扩展特性，故无法通过框架自身Validation 'image'表单验证文件MIME类型，如果您的服务器开启fileinfo扩展可直接使用 'picture' => 'image|max:2048'验证规则
           // 这里根据客户端上传文件扩展名来验证，存在一定的安全隐患，请将上传目录执行权限去掉
           //----------
-          $check_ext = in_array($ext, array('jpg', 'png', 'gif', 'bmp'), true);
+          $check_ext = in_array($ext, array('rar','txt','zip','tar','tar.gz','pdf','chm','doc','xls','docx','exe'), true);
           if ($check_ext)
           {
             $uniqid = uniqid() . '_' . date('s');
@@ -192,7 +197,7 @@ class MailController extends BaseController
           }
           else
           {
-            $json = array_replace($json, ['status' => 0, 'info' => '失败原因为：<span class="text_error">文件类型不允许,请上传常规的图片（bmp|gif|jpg|png）文件</span>']);
+            $json = array_replace($json, ['status' => 0, 'info' => '失败原因为：<span class="text_error">文件类型不允许</span>']);
           }
         }
         else

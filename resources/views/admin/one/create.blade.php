@@ -59,7 +59,7 @@
                         <a href="javascript:void(0);" class="uploadFile" data-id="thumb"><i class="fa fa-fw fa-picture-o" title="上传"></i></a>
                         <a href="javascript:void(0);" class="previewFile" data-id="thumb"><i class="fa fa-fw fa-eye" title="预览"></i></a>
                     </label>
-                    <input type="text" class="form-control" id="thumb" name="thumb" placeholder="文件地址：如{{ url('') }}/logo.png" readonly="readonly">
+                    <input type="text" class="form-control" id="file" name="file" placeholder="文件地址：如{{ url('') }}/1.rar" readonly="readonly">
                 </div>
                 <script type="text/javascript">
                     $(document).ready(function(){
@@ -69,7 +69,7 @@
                 <br>
                 <div class="control-group {!! $errors->has('description') ? 'has-error' : '' !!}">
                     <label class="control-label" for="description">内容</label>
-                    <div class="controls"> {!! Form::textarea('description', null, array('class'=>'form-control', 'id' => 'description','name' => 'description', 'placeholder'=>'Description')) !!}</div>
+                    <div class="controls"> {!! Form::textarea('description',null,array('class'=>'form-control','id'=>'description','name'=>'description','placeholder'=>'Description')) !!}</div>
                     @include('admin.vendor.endCKEditor')
                 </div>
                 <br>

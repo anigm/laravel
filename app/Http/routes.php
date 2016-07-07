@@ -122,6 +122,9 @@ Route::group(['middleware' => ['web'], 'namespace' => 'Admin', 'prefix' => 'admi
     Route::post('mail/postupload', ['as' => 'admin.mail.postupload', 'uses' => 'MailController@postUpload']);
     Route::post('mail/seed', ['as' => 'admin.mail.seed', 'uses' => 'MailController@seed']);
 
+    Route::get('mail/getUploadfile', ['as' => 'admin.mail.getUploadfile', 'uses' => 'MailController@getUploadfile']);
+    Route::post('mail/postuploadfile', ['as' => 'admin.mail.postuploadfile', 'uses' => 'MailController@postuploadfile']);
+
     //Route::get('article/recycle', 'ArticleController@recycle');
     //Route::get('article/destroy/{id}/',['as'=>'admin.article.destroy','uses'=>'ArticleController@destroy']);
     //Route::get('article/restore/{id}/',['as'=>'admin.article.restore','uses'=>'ArticleController@restore']);

@@ -9,7 +9,7 @@
                     closeBtn: false,
                     shadeClose: true,
                     fix: false,
-                    iframe : {src: '{{ route('admin.mail.getupload') }}?from='+ ele},
+                    iframe : {src: '{{ route('admin.mail.getUploadfile') }}?from='+ ele},
                     area : ['600px' , '250px'],
                     offset : ['', ''],
                     success: function(layero){
@@ -35,11 +35,11 @@
             //如果不是站内域名，不予预览
             if( pic_url.indexOf('{{ url('') }}') === -1)
             {
-                tmp = '<div style="max-width: 300px; background-color: #000; min-height:10; "><p style="margin:10px; color: #f00;">没有图片地址，或者图片地址为外链，暂时无法预览！</p></div>';
+                tmp = '<div style="max-width:300px;background-color:#000;min-height:10;"><p style="margin:10px;color:#f00;">没有文件地址,或者文件地址为外链,暂时无法预览!</p></div>';
             }
             else
             {
-                tmp = '<div style="max-width: 300px;"><img src="' + pic_url + '" width="300" /></div>';
+                tmp = '<div style="max-width: 300px;"><a href="' + pic_url + '" width="300">文件下载</a></div>';
             }
             $('#layerPreviewPic').html(tmp);
             $.layer({
