@@ -80,7 +80,17 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header"><button type="button" class="close" data-dismiss="modal">×</button><h4 class="modal-title">图片浏览</h4></div>
-            <div class="modal-body"><img id="preview-image" src="x" class="img-responsive"></div>
+            <div class="modal-body"><img id="preview-image" class="img-responsive center-block"></div>
+            <div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">取消</button></div>
+        </div>
+    </div>
+</div>
+{{-- 下载文件 --}}
+<div class="modal fade" id="modal-download-view">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header"><button type="button" class="close" data-dismiss="modal">×</button><h4 class="modal-title">下载文件</h4></div>
+            <div class="modal-body"><a id="preview-download" title="下载文件" class="img-responsive"></a></div>
             <div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">取消</button></div>
         </div>
     </div>

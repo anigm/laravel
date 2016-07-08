@@ -80,6 +80,11 @@
                                         <i class="fa fa-eye fa-lg"></i>浏览
                                     </button>
                                 @endif
+                                @if (is_download_file($file['mimeType']))
+                                    <button type="button" class="btn btn-xs btn-success" onclick="download_file('{{ $file['webPath'] }}')">
+                                        <i class="fa fa-eye fa-lg"></i>下载
+                                    </button>
+                                @endif
                             </td>
                         </tr>
                     @endforeach
@@ -90,7 +95,7 @@
     </div>
     @include('admin.upload._modals')
 @stop
-@section('extraPlugin')
+@section('scripts')
     <script>
         // 确认文件删除
         function delete_file(name)
@@ -112,10 +117,20 @@
             $("#preview-image").attr("src", path);
             $("#modal-image-view").modal("show");
         }
-        // 初始化数据
-        $(function()
+        // 下载文件
+        function download_file(path)
         {
-            $("#uploads-table").DataTable();
-        });
+            $("#preview-download").attr("href", path);
+            //获取斜杠最后一次出现的位置
+            var download_n = path.lastIndexOf("/");
+            var download_filename=path.substring(download_n+1);
+            $("#preview-download").append(download_filename);
+            $("#modal-download-view").modal("show");
+        }
+        // 初始化数据
+//        $(function()
+//        {
+//            $("#uploads-table").DataTable();
+//        });
     </script>
 @stop

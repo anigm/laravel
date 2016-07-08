@@ -15,7 +15,11 @@ function is_image($mimeType)
 {
   return starts_with($mimeType, 'image/');
 }
-
+function is_download_file($mimeType)
+{
+  $data=array('application'=>'application/','audio'=>'audio/','video'=>'video/');
+  return starts_with($mimeType, $data);
+}
 function lastSql()
 {
   $sql = DB::getQueryLog();

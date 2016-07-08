@@ -43,12 +43,6 @@ class OneController extends BaseController
     }
     public function update($id)
     {
-//        $datetime=Input::get('datetime');
-//        if(!isset($datetime))
-//        {
-//            Toastr::error('请添加时间!');
-//            return redirect('admin/blog')->with('message', '请添加时间！');
-//        }
         $ones = One::findOrFail($id);
         if($ones)
         {
@@ -61,7 +55,6 @@ class OneController extends BaseController
                 if($thumbs!=$thumb)
                 {
                     @unlink($ones['thumb']);
-                    $thumb='';
                 }
             }
             if($ones['file'])
@@ -69,7 +62,6 @@ class OneController extends BaseController
                 if($files!=$file)
                 {
                     @unlink($ones['file']);
-                    $file='';
                 }
             }
             $one = $ones->update(['title'=>Input::get('title'),'datetime'=>Input::get('datetime'),'tag'=>Input::get('tag'),'description'=>Input::get('description'),'thumb'=>$thumb,'file'=>$file,'user_id'=>Input::get('user_id')]);

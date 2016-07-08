@@ -67,28 +67,6 @@ class UploadController extends BaseController
       ->back()
       ->withErrors([$error]);
   }
-  /**
-   * 上传文件
-   */
-//  public function uploadFile(UploadFileRequest $request)
-//  {
-//    $file = $_FILES['file'];
-//    $fileName = $request->get('file_name');
-//    $fileName = $fileName ?: $file['name'];
-//    $path = str_finish($request->get('folder'), '/') . $fileName;
-//    $content = File::get($file['tmp_name']);
-//    $result = $this->manager->saveFile($path, $content);
-//    if ($result === true)
-//    {
-//      return redirect()
-//        ->back()
-//        ->withSuccess("File '$fileName' uploaded.");
-//    }
-//    $error = $result ? : "An error occurred uploading file.";
-//    return redirect()
-//      ->back()
-//      ->withErrors([$error]);
-//  }
   public function uploadFile(UploadFileRequest $request)
   {
     $file = $request->file('file');
