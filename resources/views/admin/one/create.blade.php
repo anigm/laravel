@@ -73,6 +73,15 @@
                     @include('admin.vendor.endCKEditor')
                 </div>
                 <br>
+                <div class="form-group">
+                    <label>内容</label>
+                    <span class="require">(*)</span>
+                    <div class="editor">
+                        @include('editor::head')
+                        {!! Form::textarea('content', '', ['class' => 'form-control','id'=>'myEditor']) !!}
+                    </div>
+                </div>
+                <br>
                 <input type="hidden" name="user_id" value="{{Auth::guard('admin')->user()->id}}">
                 {!! Form::submit('提交', array('class' => 'btn btn-success')) !!}
                 {!! Form::close() !!}

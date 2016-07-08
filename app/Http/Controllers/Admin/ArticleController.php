@@ -41,7 +41,8 @@ class ArticleController extends BaseController
     public function create()
     {
         $tags = Tag::lists('name', 'id');
-        $categories = Category::getLeveledCategories();
+        $categories='';
+        //$categories = Category::getLeveledCategories();
         return view('admin.articles.create',compact('categories','tags'));
     }
     public function store(Request $request)

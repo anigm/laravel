@@ -1,5 +1,4 @@
-@extends('layouts.admin-app')
-@section('pageheader')
+<?php $__env->startSection('pageheader'); ?>
     <div class="pageheader">
         <h2><i class="fa fa-home"></i> 后台 <span>添加文章</span></h2>
         <div class="breadcrumb-wrapper">
@@ -9,11 +8,12 @@
             </ol>
         </div>
     </div>
-@endsection
-@section('content')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
     <div class="box">
         <div class="box-body">
-            {!! Form::open( array('url' => route('admin.article.store'), 'method' => 'post') ) !!}
+            <?php echo Form::open( array('url' => route('admin.article.store'), 'method' => 'post') ); ?>
+
             <div class="form-group">
                 <div class="col-md-6">
                     <label>标题</label>
@@ -26,17 +26,20 @@
                 <label>内容</label>
                 <span class="require">(*)</span>
                 <div class="editor">
-                    @include('editor::head')
-                    {!! Form::textarea('content', '', ['class' => 'form-control','id'=>'myEditor']) !!}
+                    <?php echo $__env->make('editor::head', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                    <?php echo Form::textarea('content', '', ['class' => 'form-control','id'=>'myEditor']); ?>
+
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-6">
-                    {!! Form::label('tag_list', '标签：') !!}
-                    {!! Form::select('tag_list[]',$tags,null,['id' => 'tag_list','class' => 'form-control','multiple']) !!}
+                    <?php echo Form::label('tag_list', '标签：'); ?>
+
+                    <?php echo Form::select('tag_list[]',$tags,null,['id' => 'tag_list','class' => 'form-control','multiple']); ?>
+
                 </div>
             </div>
-            <input type="hidden" name="user_id" value="{{Auth::guard('admin')->user()->id}}">
+            <input type="hidden" name="user_id" value="<?php echo e(Auth::guard('admin')->user()->id); ?>">
             <div class="form-group">
                 <div class="col-md-4">
                     <span class="btn-space">
@@ -44,7 +47,10 @@
                     </span>
                 </div>
             </div>
-            {!!Form::close()!!}
+            <?php echo Form::close(); ?>
+
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.admin-app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

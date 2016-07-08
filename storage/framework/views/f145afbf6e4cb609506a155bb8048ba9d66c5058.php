@@ -77,6 +77,16 @@
                     <?php echo $__env->make('admin.vendor.endCKEditor', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
                 </div>
                 <br>
+                <div class="form-group">
+                    <label>内容</label>
+                    <span class="require">(*)</span>
+                    <div class="editor">
+                        <?php echo $__env->make('editor::head', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                        <?php echo Form::textarea('content', '', ['class' => 'form-control','id'=>'myEditor']); ?>
+
+                    </div>
+                </div>
+                <br>
                 <input type="hidden" name="user_id" value="<?php echo e(Auth::guard('admin')->user()->id); ?>">
                 <?php echo Form::submit('提交', array('class' => 'btn btn-success')); ?>
 

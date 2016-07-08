@@ -80,11 +80,11 @@ Route::group(['middleware' => ['web'], 'namespace' => 'Admin', 'prefix' => 'admi
     Route::get('one/delete/{id}', 'OneController@delete');
     Route::resource('one','OneController');
 
-//    Route::get('/backup', ['as' => 'admin.backup', 'uses' => '\Backpack\BackupManager\BackupController@index']);
-//    Route::get('backup', '\Backpack\BackupManager\app\Http\Controllers\BackupController@index');
-//    Route::put('backup/create', 'BackupController@create');
-//    Route::get('backup/download/{file_name}', 'BackupController@download');
-//    Route::delete('backup/delete/{file_name}', 'BackupController@delete');
+    Route::get('/backup', ['as' => 'admin.backup', 'uses' => '\Backpack\BackupManager\BackupController@index']);
+    Route::get('backup', '\Backpack\BackupManager\app\Http\Controllers\BackupController@index');
+    Route::put('backup/create', 'BackupController@create');
+    Route::get('backup/download/{file_name}', 'BackupController@download');
+    Route::delete('backup/delete/{file_name}', 'BackupController@delete');
 
     Route::get('category/destroy/{id}/','CategoryController@destroy');
     Route::resource('category','CategoryController');
@@ -139,7 +139,7 @@ Route::group(['middleware' => ['web'], 'namespace' => 'Admin', 'prefix' => 'admi
     //Route::get('upload', 'UploadController@index');
 
 //    Route::get('log-viewer');
-
+    Route::get('system/base', ['as' => 'admin.system.base', 'uses' => 'SystemController@base']);
     
 //    Route::resource('logviewer', '\Arcanedev\LogViewer\Http\Controllers\LogViewerController@index');
     Route::resource('plugin/filemanager/show', 'UsersController');
