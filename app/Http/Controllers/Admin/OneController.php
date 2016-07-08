@@ -52,19 +52,27 @@ class OneController extends BaseController
         $ones = One::findOrFail($id);
         if($ones)
         {
-            $thumbs=Input::get('thumb');
-            $files =Input::get('file');
+            $thumb=Input::get('thumb');
+            $thumbs=Input::get('thumbs');
+            $file =Input::get('file');
+            $files =Input::get('files');
             if($ones['thumb'])
             {
-                @unlink($ones['thumb']);
-                $thumbs='';
+                if($thumbs!=$thumb)
+                {
+                    @unlink($ones['thumb']);
+                    $thumb='';
+                }
             }
             if($ones['file'])
             {
-                @unlink($ones['file']);
-                $files='';
+                if($files!=$file)
+                {
+                    @unlink($ones['file']);
+                    $file='';
+                }
             }
-            $one = $ones->update(['title'=>Input::get('title'),'datetime'=>Input::get('datetime'),'tag'=>Input::get('tag'),'description'=>Input::get('description'),'thumb'=>$thumbs,'file'=>$files,'user_id'=>Input::get('user_id')]);
+            $one = $ones->update(['title'=>Input::get('title'),'datetime'=>Input::get('datetime'),'tag'=>Input::get('tag'),'description'=>Input::get('description'),'thumb'=>$thumb,'file'=>$file,'user_id'=>Input::get('user_id')]);
             if($one)
             {
                 Toastr::success('修改成功!');

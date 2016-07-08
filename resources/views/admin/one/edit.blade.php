@@ -53,6 +53,7 @@
                         @include('admin.vendor.endSinglePic')
                     });
                 </script>
+                <input type="hidden" name="thumbs" value="{{$ones->thumb}}">
                 <br>
                 <div class="form-group">
                     <label>文件
@@ -66,6 +67,7 @@
                         @include('admin.vendor.endSingleFile')
                     });
                 </script>
+                <input type="hidden" name="files" value="{{$ones->file}}">
                 <br>
                 <div class="control-group {!! $errors->has('description') ? 'has-error' : '' !!}">
                     <label class="control-label" for="description">内容</label>
