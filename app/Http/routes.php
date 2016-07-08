@@ -137,8 +137,11 @@ Route::group(['middleware' => ['web'], 'namespace' => 'Admin', 'prefix' => 'admi
     //Route::get('article/delete/{id}/',['as'=>'admin.article.delete','uses'=>'ArticleController@delete']);
     //Route::get('/', ['as' => 'upload', 'uses' => 'ImageController@getUpload']);
     //Route::get('upload', 'UploadController@index');
-    Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
+//    Route::get('log-viewer');
+
+    
+//    Route::resource('logviewer', '\Arcanedev\LogViewer\Http\Controllers\LogViewerController@index');
     Route::resource('plugin/filemanager/show', 'UsersController');
 });
 

@@ -3,7 +3,7 @@
 // from: http://coursesweb.net/javascript/
 class imgbrowse {
   // IN $root - REPLACE "/imgup" WITH THE PATH TO THE FOLDER WITH IMAGES RELATIVE TO ROOT OF YOUR WEBSITE ON SERVER
-  protected $root = '/uploads/images/';
+  protected $root = '/ckeditor/';
   protected $imgext = ['bmp', 'gif', 'jpg', 'jpe', 'jpeg', 'png'];    // allowed image extensions
   protected $imgdr = '';     // current folder (in $root) with images
 
@@ -24,8 +24,15 @@ class imgbrowse {
     }
 
     // get protocol and host name to add absolute path in <img src>
-    $protocol = !empty($_SERVER['HTTPS']) ? 'https://' : 'http://';
-    $site = $protocol. $_SERVER['SERVER_NAME'] .'/';
+    if($_SERVER['SERVER_NAME']=='www.lnmp.org')
+    {
+      $site='http://192.168.0.144/';
+    }
+    else
+    {
+      $protocol = !empty($_SERVER['HTTPS']) ? 'https://' : 'http://';
+      $site = $protocol. $_SERVER['SERVER_NAME'] .'/';
+    }
 
     // traverse the $obdr
     foreach($obdr as $fileobj) {

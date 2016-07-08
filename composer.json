@@ -17,14 +17,14 @@
         "laravelcollective/html": "^5.2",
         "yuanchao/laravel-5-markdown-editor": "dev-master",
         "dflydev/apache-mime-types": "^1.0",
-        "rap2hpoutre/laravel-log-viewer": "^0.5.3",
         "barryvdh/laravel-ide-helper": "^2.1",
         "mcs/html-to-pdf": "^0.0.1",
         "fzaninotto/faker": "^1.5",
         "backpack/backupmanager": "^1.1",
         "kalnoy/nestedset": "^4.1",
         "suin/php-rss-writer": "^1.4",
-        "intervention/image": "^2.3"
+        "intervention/image": "^2.3",
+        "arcanedev/log-viewer": "~3.0"
     },
     "require-dev": {
         "mockery/mockery": "0.9.*",

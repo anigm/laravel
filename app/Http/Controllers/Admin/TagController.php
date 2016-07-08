@@ -4,13 +4,14 @@ use App\Models\Article;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Tag;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Input;
 use Breadcrumbs, Toastr;
 class TagController extends BaseController
 {
     public function index()
     {
-        $tags = Tag::orderBy('id','desc')->paginate(15);
+        $tags = Tag::orderBy('id','desc')->get();
         return view('admin.tags.index',compact('tags'));
     }
     public function destroy($id)
@@ -25,12 +26,12 @@ class TagController extends BaseController
         $tag->articles()->detach($article_ids);
         if($tag->delete())
         {
-            Toastr::success('标签删除成功!');
+            Toastr::success('删除成功!');
             return redirect('admin/tags')->with('message', '标签删除成功！');
         }
         else
         {
-            Toastr::error('标签删除失败!');
+            Toastr::error('删除失败!');
             return back()->withInput()->with('errors','标签删除失败！');
         }
     }
@@ -41,16 +42,18 @@ class TagController extends BaseController
     }
     public function update($id)
     {
+        $edittime=Carbon::now();
         $tags = Tag::findOrFail($id);
-        $tags->update(Input::get());
+        $data=array('edittime'=>$edittime,'name'=>Input::get('name'));
+        $tags->update($data);
         if($tags)
         {
-            Toastr::success('标签更新发布!');
+            Toastr::success('更新发布!');
             return redirect('admin/tags')->with('message', '标签更新发布！');
         }
         else
         {
-            Toastr::error('标签更新失败!');
+            Toastr::error('更新失败!');
             return back()->withInput()->with('errors','标签更新失败！');
         }
     }
@@ -60,15 +63,17 @@ class TagController extends BaseController
     }
     public function store()
     {
-        $tags = Tag::create(Input::get());
+        $addtime=Carbon::now();
+        $data=array('addtime'=>$addtime,'name'=>Input::get('name'));
+        $tags = Tag::create($data);
         if($tags)
         {
-            Toastr::success('标签添加发布!');
+            Toastr::success('添加发布!');
             return redirect('admin/tags')->with('message', '标签添加发布！');
         }
         else
         {
-            Toastr::error('标签添加失败!');
+            Toastr::error('添加失败!');
             return back()->withInput()->with('errors','标签添加失败！');
         }
     }

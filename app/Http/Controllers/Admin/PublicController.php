@@ -18,6 +18,7 @@ class PublicController extends BaseController
   }
   public function postUploadpic(Request $request)
   {
+    $time=date('Y-m-d');
     if ($request->ajax())
     {
       $json = [

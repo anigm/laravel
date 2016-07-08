@@ -16,28 +16,29 @@ if(isset($_FILES['upload']) && strlen($_FILES['upload']['name']) > 1)
 {
   //modified by raoyc[http://raoyc.com]
   //upload file name changed by md5
-  $time=date('Y-m-d');
   $upload_dir = trim($upload_dir, '/') .'/';
-  if(file_exists($upload_dir.$time))
-  {
-    $myfile=$upload_dir.$time;
-  }
-  else
-  {
-    mkdir($upload_dir.$time,0777);
-    $myfile=$upload_dir.$time;
-  }
   $o_img_name = basename($_FILES['upload']['name']);
   $sepext = explode('.', strtolower($_FILES['upload']['name']));
   $type = end($sepext);       // gets extension
   $img_name = md5( date('YmdHis').$o_img_name ).'.'.$type;
-  // get protocol and host name to send the absolute image path to CKEditor
-  $protocol = !empty($_SERVER['HTTPS']) ? 'https://' : 'http://';
-  $site = $protocol. $_SERVER['SERVER_NAME'] .':1234/';
-  $uploadpath = $_SERVER['DOCUMENT_ROOT'] .'/'. $myfile.'/'. $img_name;       // full file path
-  //$uploadpath = $_SERVER['DOCUMENT_ROOT'] .'/'. $upload_dir .$time.'/'. $img_name;       // full file path
-  list($width, $height) = getimagesize($_FILES['upload']['tmp_name']);     // gets image width and height
-  $err = '';         // to store the errors
+  if($_SERVER['SERVER_NAME']=='www.lnmp.org')
+  {
+    $site='http://192.168.0.144/';
+  }
+  else
+  {
+    $protocol = !empty($_SERVER['HTTPS']) ? 'https://' : 'http://';
+    $site = $protocol. $_SERVER['SERVER_NAME'] .'/';
+  }
+  $time=date('Y-m-d');
+  $mydir=$_SERVER['DOCUMENT_ROOT'] .'/'.$upload_dir.'/'.$time;
+  if(!is_dir($mydir))
+  {
+    mkdir($mydir);
+  }
+  $uploadpath = $_SERVER['DOCUMENT_ROOT'] .'/'.$upload_dir.'/'.$time.'/'.$img_name;
+  list($width, $height) = getimagesize($_FILES['upload']['tmp_name']);
+  $err = '';
   // Checks if the file has allowed type, size, width and height (for images)
   if(!in_array($type, $imgsets['type'])) $err .= 'The file: '. $_FILES['upload']['name']. ' has not the allowed extension type.';
   if($_FILES['upload']['size'] > $imgsets['maxsize']*1000) $err .= '\\n Maximum file size must be: '. $imgsets['maxsize']. ' KB.';
@@ -52,8 +53,7 @@ if(isset($_FILES['upload']) && strlen($_FILES['upload']['name']) > 1)
     if(move_uploaded_file($_FILES['upload']['tmp_name'], $uploadpath))
     {
       $CKEditorFuncNum = $_GET['CKEditorFuncNum'];
-      $url = $site. $myfile.'/'. $img_name;
-      //$url = $site. $upload_dir .$time.'/'. $img_name;
+      $url = $site. $upload_dir .$time .'/'. $img_name;
       $message = $img_name .' successfully uploaded: \\n- Size: '. number_format($_FILES['upload']['size']/1024, 3, '.', '') .' KB \\n- Image Width x Height: '. $width. ' x '. $height;
       $re = "window.parent.CKEDITOR.tools.callFunction($CKEditorFuncNum, '$url', '$message')";
     }

@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Shanghai',
 
     /*
     |--------------------------------------------------------------------------
@@ -165,9 +165,10 @@ return [
         Barryvdh\Debugbar\ServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         YuanChao\Editor\EndaEditorServiceProvider::class,
-        Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+
+        Arcanedev\LogViewer\LogViewerServiceProvider::class,
 
 //        Spatie\Backup\BackupServiceProvider::class,
 //        Backpack\BackupManager\BackupManagerServiceProvider::class,

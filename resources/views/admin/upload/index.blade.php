@@ -57,36 +57,33 @@
                     @endforeach
                     {{-- 所有文件 --}}
                     @foreach ($files as $file)
-                        <tr>
-                            <td>
-                                <a href="{{ $file['webPath'] }}">
-                                    @if (is_image($file['mimeType']))
-                                        <i class="fa fa-file-image-o fa-lg fa-fw"></i>
-                                    @else
-                                        <i class="fa fa-file-o fa-lg fa-fw"></i>
-                                    @endif
-                                    {{ $file['name'] }}
-                                </a>
-                            </td>
-                            <td>{{ $file['mimeType'] or 'Unknown' }}</td>
-                            <td>{{ $file['modified']->format('j-M-y g:ia') }}</td>
-                            <td>{{ human_filesize($file['size']) }}</td>
-                            <td>
-                                <button type="button" class="btn btn-xs btn-danger" onclick="delete_file('{{ $file['name'] }}')">
-                                    <i class="fa fa-times-circle fa-lg"></i>删除
-                                </button>
-                                @if (is_image($file['mimeType']))
-                                    <button type="button" class="btn btn-xs btn-success" onclick="preview_image('{{ $file['webPath'] }}')">
-                                        <i class="fa fa-eye fa-lg"></i>浏览
-                                    </button>
-                                @endif
-                                @if (is_download_file($file['mimeType']))
-                                    <button type="button" class="btn btn-xs btn-success" onclick="download_file('{{ $file['webPath'] }}')">
-                                        <i class="fa fa-eye fa-lg"></i>下载
-                                    </button>
-                                @endif
-                            </td>
-                        </tr>
+                    <tr>
+                    <td>
+                    <a href="{{ $file['webPath'] }}">
+                        @if (is_image($file['mimeType']))<i class="fa fa-file-image-o fa-lg fa-fw"></i>
+                        @else<i class="fa fa-file-o fa-lg fa-fw"></i>@endif
+                        {{ $file['name'] }}
+                    </a>
+                    </td>
+                    <td>{{ $file['mimeType'] or 'Unknown' }}</td>
+                    <td>{{ $file['modified']->format('j-M-y g:ia') }}</td>
+                    <td>{{ human_filesize($file['size']) }}</td>
+                    <td>
+                        <button type="button" class="btn btn-xs btn-danger" onclick="delete_file('{{ $file['name'] }}')">
+                            <i class="fa fa-times-circle fa-lg"></i>删除
+                        </button>
+                        @if (is_image($file['mimeType']))
+                            <button type="button" class="btn btn-xs btn-success" onclick="preview_image('{{ $file['webPath'] }}')">
+                                <i class="fa fa-eye fa-lg"></i>浏览
+                            </button>
+                        @endif
+                        @if (is_download_file($file['mimeType']))
+                            <button type="button" class="btn btn-xs btn-success" onclick="download_file('{{ $file['webPath'] }}')">
+                                <i class="fa fa-eye fa-lg"></i>下载
+                            </button>
+                        @endif
+                    </td>
+                    </tr>
                     @endforeach
                     </tbody>
                 </table>

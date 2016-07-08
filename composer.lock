@@ -4,9 +4,131 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "96eab6619665c75e87b15ef67b4782eb",
-    "content-hash": "bc192740c0a923ea64b6c6a72b68c2d8",
+    "hash": "83c07e3cd2030366ec8d540772a644b5",
+    "content-hash": "f2804caa880494bafb3f0ad30757138e",
     "packages": [
+        {
+            "name": "arcanedev/log-viewer",
+            "version": "3.10.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ARCANEDEV/LogViewer.git",
+                "reference": "c7715b18d750c9feb4a4280137963f12ae655794"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://packagist.phpcomposer.com/files/ARCANEDEV/LogViewer/c7715b18d750c9feb4a4280137963f12ae655794.zip",
+                "reference": "c7715b18d750c9feb4a4280137963f12ae655794",
+                "shasum": ""
+            },
+            "require": {
+                "arcanedev/support": "~3.0",
+                "php": ">=5.5.9",
+                "psr/log": "~1.0"
+            },
+            "require-dev": {
+                "phpunit/phpcov": "~2.0|~3.0",
+                "phpunit/phpunit": "~4.0|~5.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.10.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Arcanedev\\LogViewer\\": "src/"
+                },
+                "files": [
+                    "constants.php",
+                    "helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "ARCANEDEV",
+                    "email": "arcanedev.maroc@gmail.com",
+                    "homepage": "https://github.com/arcanedev-maroc",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Provides a Log Viewer for Laravel 5",
+            "homepage": "https://github.com/ARCANEDEV/LogViewer",
+            "keywords": [
+                "arcanedev",
+                "arcanesoft",
+                "laravel",
+                "log",
+                "log viewer",
+                "log-viewer",
+                "logviewer"
+            ],
+            "time": "2016-06-06 01:38:50"
+        },
+        {
+            "name": "arcanedev/support",
+            "version": "3.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ARCANEDEV/Support.git",
+                "reference": "bbe6d6b7dc9171c00103e2f4aa0357ce1ac94d1e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://packagist.phpcomposer.com/files/ARCANEDEV/Support/bbe6d6b7dc9171c00103e2f4aa0357ce1ac94d1e.zip",
+                "reference": "bbe6d6b7dc9171c00103e2f4aa0357ce1ac94d1e",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/filesystem": "~5.0",
+                "illuminate/support": "~5.0",
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "phpunit/phpcov": "~2.0|~3.0",
+                "phpunit/phpunit": "~4.0|~5.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Arcanedev\\Support\\": "src/"
+                },
+                "files": [
+                    "constants.php",
+                    "helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "ARCANEDEV",
+                    "email": "arcanedev.maroc@gmail.com",
+                    "homepage": "https://github.com/arcanedev-maroc"
+                }
+            ],
+            "description": "ARCANEDEV Support Helpers",
+            "homepage": "https://github.com/ARCANEDEV/Support",
+            "keywords": [
+                "arcanedev",
+                "arcanesoft",
+                "laravel",
+                "support"
+            ],
+            "time": "2016-04-17 18:12:30"
+        },
         {
             "name": "backpack/backupmanager",
             "version": "1.1.5",
@@ -1818,52 +1940,6 @@
             "time": "2016-03-09 05:03:14"
         },
         {
-            "name": "rap2hpoutre/laravel-log-viewer",
-            "version": "v0.5.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/rap2hpoutre/laravel-log-viewer.git",
-                "reference": "120ed1834f4be9b60cca3d2a5b80e408287874de"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://packagist.phpcomposer.com/files/rap2hpoutre/laravel-log-viewer/120ed1834f4be9b60cca3d2a5b80e408287874de.zip",
-                "reference": "120ed1834f4be9b60cca3d2a5b80e408287874de",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/support": "4.2.*|5.*",
-                "php": ">=5.4.0"
-            },
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    "src/controllers"
-                ],
-                "psr-0": {
-                    "Rap2hpoutre\\LaravelLogViewer\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "rap2hpoutre",
-                    "email": "raphael@ornikar.com"
-                }
-            ],
-            "description": "A Laravel log reader",
-            "keywords": [
-                "log",
-                "log-reader",
-                "log-viewer",
-                "logging"
-            ],
-            "time": "2016-01-25 20:12:40"
-        },
-        {
             "name": "ryan/toastr-for-laravel",
             "version": "1.0.0",
             "source": {
@@ -1945,16 +2021,16 @@
         },
         {
             "name": "spatie/laravel-backup",
-            "version": "3.8.0",
+            "version": "3.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-backup.git",
-                "reference": "ff922a830d3dc73c353d93cb735db62d1239b7e6"
+                "reference": "08b7b8c778d5aeb0179cc49da4f64415bab9f81f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://packagist.phpcomposer.com/files/spatie/laravel-backup/ff922a830d3dc73c353d93cb735db62d1239b7e6.zip",
-                "reference": "ff922a830d3dc73c353d93cb735db62d1239b7e6",
+                "url": "https://packagist.phpcomposer.com/files/spatie/laravel-backup/08b7b8c778d5aeb0179cc49da4f64415bab9f81f.zip",
+                "reference": "08b7b8c778d5aeb0179cc49da4f64415bab9f81f",
                 "shasum": ""
             },
             "require": {
@@ -2003,7 +2079,7 @@
                 "laravel-backup",
                 "spatie"
             ],
-            "time": "2016-06-15 23:42:49"
+            "time": "2016-07-06 15:30:58"
         },
         {
             "name": "suin/php-rss-writer",
@@ -4288,16 +4364,16 @@
         },
         {
             "name": "recca0120/laravel-tracy",
-            "version": "v1.5.6",
+            "version": "v1.5.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/recca0120/laravel-tracy.git",
-                "reference": "2b9b99e6e5de2e86857dc7a4a29d1427928bc95e"
+                "reference": "4a9ce90a266c99d74bb4e621b10bc6a4386d9a94"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://packagist.phpcomposer.com/files/recca0120/laravel-tracy/2b9b99e6e5de2e86857dc7a4a29d1427928bc95e.zip",
-                "reference": "2b9b99e6e5de2e86857dc7a4a29d1427928bc95e",
+                "url": "https://packagist.phpcomposer.com/files/recca0120/laravel-tracy/4a9ce90a266c99d74bb4e621b10bc6a4386d9a94.zip",
+                "reference": "4a9ce90a266c99d74bb4e621b10bc6a4386d9a94",
                 "shasum": ""
             },
             "require": {
@@ -4347,7 +4423,7 @@
                 "tracy",
                 "webprofiler"
             ],
-            "time": "2016-07-04 13:16:35"
+            "time": "2016-07-08 00:52:24"
         },
         {
             "name": "recca0120/terminal",

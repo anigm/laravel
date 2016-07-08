@@ -17,12 +17,16 @@
                 <tr>
                     <th>ID</th>
                     <th>名称</th>
+                    <th>创建时间</th>
+                    <th>修改时间</th>
                     <th>操作</th>
                 </tr>
                 @foreach($tags as $tag)
                     <tr>
                         <td>{{$tag->id}}</td>
                         <td>{{$tag->name}}</td>
+                        <td>{{$tag->addtime}}</td>
+                        <td>@if($tag->edittime){{$tag->edittime}}@else-@endif</td>
                         <td>
                             <a href="{{ url('admin/tags/'.$tag->id.'/edit')  }}" class="btn btn-info btn-primary btn-sm iframe cboxElement"><span class="glyphicon glyphicon-pencil"></span> 编辑</a>
                             <a href="{{ url('admin/tags/destroy/'.$tag->id)  }}" class="btn btn-info btn-danger btn-sm iframe cboxElement"><span class="glyphicon glyphicon-trash"></span> 删除</a>
