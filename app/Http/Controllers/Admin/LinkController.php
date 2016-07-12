@@ -25,7 +25,7 @@ class LinkController extends BaseController
 //    }
     public function index()
     {
-        $links = Link::orderBy('id','desc')->paginate(15);
+        $links = Link::orderBy('id','desc')->paginate(env('page'));
         return view('admin.link.index',compact('links'));
     }
     public function create(Request $input)
@@ -176,7 +176,7 @@ class LinkController extends BaseController
     }
     public function recycle()
     {
-        $links = Link::onlyTrashed()->paginate(15);
+        $links = Link::onlyTrashed()->paginate(env('page'));
         return view('admin.link.recycle',compact('links'));
     }
     public function restore($id)

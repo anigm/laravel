@@ -16,7 +16,7 @@
             <div class="col-lg-12">
                 {!! Form::open( array('url' => route('admin.link.store'), 'method' => 'post', 'files'=>true)) !!}
                 <div class="control-group {!! $errors->has('name') ? 'has-error' : '' !!}">
-                    <label class="control-label" for="name">名称</label>
+                    <label class="control-label" for="name">{{trans('admin.base.title')}}</label>
                     <div class="controls"> {!! Form::text('name', null, array('class'=>'form-control', 'id' => 'name', 'placeholder'=>'名称')) !!}
                         @if ($errors->first('name')) <span class="help-block">{!! $errors->first('name') !!}</span> @endif
                     </div>
@@ -35,15 +35,15 @@
                     <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
                     <div>
                 <span class="btn btn-default btn-file">
-                    <span class="fileinput-new">图片</span>
-                    <span class="fileinput-exists">重选</span>
+                    <span class="fileinput-new">{{trans('admin.base.image')}}</span>
+                    <span class="fileinput-exists">{{trans('admin.base.Gravity')}}</span>
                     {!! Form::file('image', null, array('class'=>'form-control', 'id' => 'image', 'placeholder'=>'Image')) !!}
                     @if ($errors->first('image')) <span class="help-block">{!! $errors->first('image') !!}</span> @endif
                 </span>
-                <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">移除</a><a href="#" class="btn btn-default">尺寸&nbsp;200*200</a>
+                <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">{{trans('admin.base.remove')}}</a><a href="#" class="btn btn-default">{{trans('admin.base.size')}}&nbsp;200*200</a>
                 </div>
                 <br>
-                {!! Form::submit('提交', array('class' => 'btn btn-success')) !!}
+                {!! Form::submit(trans('admin.base.Submit'), array('class' => 'btn btn-success')) !!}
                 {!! Form::close() !!}
             </div>
         </div>

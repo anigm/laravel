@@ -15,7 +15,8 @@ class OneController extends BaseController
 {
     public function index()
     {
-        $ones = One::orderBy('id','desc')->paginate(15);
+
+        $ones = One::orderBy('id','desc')->paginate(env('page'));
         return view('admin.one.index',compact('ones'));
     }
     public function create(Request $input)
@@ -98,7 +99,7 @@ class OneController extends BaseController
     }
     public function recycle()
     {
-        $ones = One::onlyTrashed()->paginate(15);
+        $ones = One::onlyTrashed()->paginate(env('page'));
         return view('admin.one.recycle',compact('ones'));
     }
     public function restore($id)

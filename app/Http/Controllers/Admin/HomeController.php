@@ -16,17 +16,6 @@ class HomeController extends BaseController
     {
         parent::__construct();
     }
-//    public function index(Request $request)
-//    {
-//        $article_count = Article::count();
-//        $category_count = Category::count();
-//        $tag_count = Tag::count();
-//        $user_count = AdminUser::count();
-//        $one_count = One::count();
-//        $blog_count = Blog::count();
-//        $link_count=Link::count();
-//        return view('admin.home',compact('article_count','category_count','tag_count','user_count','one_count','blog_count','link_count'));
-//    }
     public function index(Request $request)
     {
         $article_count = Article::count();

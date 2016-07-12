@@ -1,133 +1,65 @@
 @extends('layouts.admin-app')
 @section('pageheader')
     <div class="pageheader">
-        <h2><i class="fa fa-home"></i> 后台 <span>文件管理</span></h2>
+        <h2><i class="fa fa-home"></i> 后台 <span>文件上传</span></h2>
         <div class="breadcrumb-wrapper">
             <span class="label">当前地址:</span>
             <ol class="breadcrumb">
-                <li class="active">文件管理</li>
+                <li class="active">文件上传</li>
             </ol>
         </div>
     </div>
 @endsection
 @section('content')
-    <div class="container-fluid">
-        <div class="row page-title-row" style="padding-top: 12px;">
-            <div class="col-md-6">
-                <div class="pull-left">
-                    <ul class="breadcrumb">
-                        @foreach ($breadcrumbs as $path => $disp)
-                            <li><a href="/admin/upload?folder={{ $path }}">{{ $disp }}</a></li>
-                        @endforeach
-                        <li class="active">{{ $folderName }}</li>
-                    </ul>
+    <link href="{{ asset('plugin/dropzone/dropzone.css') }}" rel="stylesheet" type="text/css" />
+    <div class="panel panel-default">
+        <div class="panel-body content-form">
+            <div class="col-lg-12">
+                {!! Form::open(['url' => route('uploads-post'), 'class' => 'dropzone', 'files'=>true, 'id'=>'real-dropzone']) !!}
+                <div class="dz-message">
                 </div>
-            </div>
-            <div class="col-md-6 text-right">
-                <button type="button" class="btn btn-success btn-md" data-toggle="modal" data-target="#modal-folder-create">
-                    <i class="fa fa-plus-circle"></i> 创建目录
-                </button>
-                <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#modal-file-upload">
-                    <i class="fa fa-upload"></i> 上传
-                </button>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12">
-                <table id="uploads-table" class="table table-striped table-bordered">
-                    <thead>
-                    <tr>
-                        <th>名字</th>
-                        <th>文件类型</th>
-                        <th>创建日期</th>
-                        <th>文件大小</th>
-                        <th data-sortable="false">操作</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {{-- 子目录 --}}
-                    @foreach ($subfolders as $path => $name)
-                        <tr>
-                            <td><a href="/admin/upload?folder={{ $path }}"><i class="fa fa-folder fa-lg fa-fw"></i>{{ $name }}</a></td>
-                            <td>Folder</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td><button type="button" class="btn btn-xs btn-danger" onclick="delete_folder('{{ $name }}')"><i class="fa fa-times-circle fa-lg"></i>删除</button></td>
-                        </tr>
-                    @endforeach
-                    {{-- 所有文件 --}}
-                    @foreach ($files as $file)
-                    <tr>
-                    <td>
-                    <a href="{{ $file['webPath'] }}">
-                        @if (is_image($file['mimeType']))<i class="fa fa-file-image-o fa-lg fa-fw"></i>
-                        @else<i class="fa fa-file-o fa-lg fa-fw"></i>@endif
-                        {{ $file['name'] }}
-                    </a>
-                    </td>
-                    <td>{{ $file['mimeType'] or 'Unknown' }}</td>
-                    <td>{{ $file['modified']->format('j-M-y g:ia') }}</td>
-                    <td>{{ human_filesize($file['size']) }}</td>
-                    <td>
-                        <button type="button" class="btn btn-xs btn-danger" onclick="delete_file('{{ $file['name'] }}')">
-                            <i class="fa fa-times-circle fa-lg"></i>删除
-                        </button>
-                        @if (is_image($file['mimeType']))
-                            <button type="button" class="btn btn-xs btn-success" onclick="preview_image('{{ $file['webPath'] }}')">
-                                <i class="fa fa-eye fa-lg"></i>浏览
-                            </button>
-                        @endif
-                        @if (is_download_file($file['mimeType']))
-                            <button type="button" class="btn btn-xs btn-success" onclick="download_file('{{ $file['webPath'] }}')">
-                                <i class="fa fa-eye fa-lg"></i>下载
-                            </button>
-                        @endif
-                    </td>
-                    </tr>
-                    @endforeach
-                    </tbody>
-                </table>
+                <div class="fallback">
+                    <input name="file" type="file" multiple />
+                </div>
+                <div class="dropzone-previews" id="dropzonePreview"></div>
+                <h4 style="text-align: center;color:#428bca;">Drop images in this area  <span class="glyphicon glyphicon-hand-down"></span></h4>
+                {!! Form::close() !!}
+                <div id="preview-template" style="display: none;">
+                    <div class="dz-preview dz-file-preview">
+                        <div class="dz-image"><img data-dz-thumbnail=""></div>
+                        <div class="dz-details">
+                            <div class="dz-size"><span data-dz-size=""></span></div>
+                            <div class="dz-filename"><span data-dz-name=""></span></div>
+                        </div>
+                        <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress=""></span></div>
+                        <div class="dz-error-message"><span data-dz-errormessage=""></span></div>
+                        <div class="dz-success-mark">
+                            <svg width="54px" height="54px" viewBox="0 0 54 54" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                                <title>Check</title>
+                                <desc>Created with Sketch.</desc>
+                                <defs></defs>
+                                <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+                                    <path d="M23.5,31.8431458 L17.5852419,25.9283877 C16.0248253,24.3679711 13.4910294,24.366835 11.9289322,25.9289322 C10.3700136,27.4878508 10.3665912,30.0234455 11.9283877,31.5852419 L20.4147581,40.0716123 C20.5133999,40.1702541 20.6159315,40.2626649 20.7218615,40.3488435 C22.2835669,41.8725651 24.794234,41.8626202 26.3461564,40.3106978 L43.3106978,23.3461564 C44.8771021,21.7797521 44.8758057,19.2483887 43.3137085,17.6862915 C41.7547899,16.1273729 39.2176035,16.1255422 37.6538436,17.6893022 L23.5,31.8431458 Z M27,53 C41.3594035,53 53,41.3594035 53,27 C53,12.6405965 41.3594035,1 27,1 C12.6405965,1 1,12.6405965 1,27 C1,41.3594035 12.6405965,53 27,53 Z" id="Oval-2" stroke-opacity="0.198794158" stroke="#747474" fill-opacity="0.816519475" fill="#FFFFFF" sketch:type="MSShapeGroup"></path>
+                                </g>
+                            </svg>
+                        </div>
+                        <div class="dz-error-mark">
+                            <svg width="54px" height="54px" viewBox="0 0 54 54" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                                <title>error</title>
+                                <desc>Created with Sketch.</desc>
+                                <defs></defs>
+                                <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+                                    <g id="Check-+-Oval-2" sketch:type="MSLayerGroup" stroke="#747474" stroke-opacity="0.198794158" fill="#FFFFFF" fill-opacity="0.816519475">
+                                        <path d="M32.6568542,29 L38.3106978,23.3461564 C39.8771021,21.7797521 39.8758057,19.2483887 38.3137085,17.6862915 C36.7547899,16.1273729 34.2176035,16.1255422 32.6538436,17.6893022 L27,23.3431458 L21.3461564,17.6893022 C19.7823965,16.1255422 17.2452101,16.1273729 15.6862915,17.6862915 C14.1241943,19.2483887 14.1228979,21.7797521 15.6893022,23.3461564 L21.3431458,29 L15.6893022,34.6538436 C14.1228979,36.2202479 14.1241943,38.7516113 15.6862915,40.3137085 C17.2452101,41.8726271 19.7823965,41.8744578 21.3461564,40.3106978 L27,34.6568542 L32.6538436,40.3106978 C34.2176035,41.8744578 36.7547899,41.8726271 38.3137085,40.3137085 C39.8758057,38.7516113 39.8771021,36.2202479 38.3106978,34.6538436 L32.6568542,29 Z M27,53 C41.3594035,53 53,41.3594035 53,27 C53,12.6405965 41.3594035,1 27,1 C12.6405965,1 1,12.6405965 1,27 C1,41.3594035 12.6405965,53 27,53 Z" id="Oval-2" sketch:type="MSShapeGroup"></path>
+                                    </g>
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    @include('admin.upload._modals')
-@stop
-@section('scripts')
-    <script>
-        // 确认文件删除
-        function delete_file(name)
-        {
-            $("#delete-file-name1").html(name);
-            $("#delete-file-name2").val(name);
-            $("#modal-file-delete").modal("show");
-        }
-        // 确认目录删除
-        function delete_folder(name)
-        {
-            $("#delete-folder-name1").html(name);
-            $("#delete-folder-name2").val(name);
-            $("#modal-folder-delete").modal("show");
-        }
-        // 预览图片
-        function preview_image(path)
-        {
-            $("#preview-image").attr("src", path);
-            $("#modal-image-view").modal("show");
-        }
-        // 下载文件
-        function download_file(path)
-        {
-            $("#preview-download").attr("href", path);
-            //获取斜杠最后一次出现的位置
-            var download_n = path.lastIndexOf("/");
-            var download_filename=path.substring(download_n+1);
-            $("#preview-download").append(download_filename);
-            $("#modal-download-view").modal("show");
-        }
-        // 初始化数据
-//        $(function()
-//        {
-//            $("#uploads-table").DataTable();
-//        });
-    </script>
-@stop
+    <script src="{{ asset('plugin/dropzone/dropzone.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('plugin/dropzone/dropzone-config.js') }}" type="text/javascript"></script>
+@endsection

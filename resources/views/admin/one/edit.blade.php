@@ -68,12 +68,43 @@
                     });
                 </script>
                 <input type="hidden" name="files" value="{{$ones->file}}">
+                @if(env('myedit')=='ckeditor')
                 <br>
                 <div class="control-group {!! $errors->has('description') ? 'has-error' : '' !!}">
                     <label class="control-label" for="description">内容</label>
                     <div class="controls"> {!! Form::textarea('description', $ones->description, array('class'=>'form-control', 'id' => 'description','name' => 'description', 'placeholder'=>'Description')) !!}</div>
                     @include('admin.vendor.endCKEditor')
                 </div>
+                @elseif(env('myedit')=='mkdown')
+                <br>
+                <div class="form-group">
+                    <label>内容</label>
+                    <span class="require">(*)</span>
+                    <div class="editor">
+                        @include('editor::head')
+                        {!! Form::textarea('description', $ones->description, ['class' => 'form-control','id'=>'myEditor']) !!}
+                    </div>
+                </div>
+                @else
+                <br>
+                <div class="form-group">
+                    <label>内容</label>
+                    <span class="require">(*)</span>
+                    <div class="editor">
+                        {!! UEditor::css() !!}
+                        <script type='text/plain' id='description' name='description' class='ueditor'>{{$ones->description}}</script>
+                        {!! UEditor::js() !!}
+                        <script type="text/javascript">
+                        var serverUrl=UE.getOrigin()+'/admin/ueditor/server'; //你的自定义上传路由
+                        var ue = UE.getEditor('description',{'serverUrl':serverUrl}); //如果不使用默认路由，就需要在初始化就设定这个值
+                        ue.ready(function()
+                        {
+                            ue.execCommand('serverparam', '_token', '{{ csrf_token() }}');
+                        });
+                        </script>
+                    </div>
+                </div>
+                @endif
                 <br>
                 <input type="hidden" name="user_id" value="{{Auth::guard('admin')->user()->id}}">
                 {!! Form::submit('提交', array('class' => 'btn btn-success')) !!}

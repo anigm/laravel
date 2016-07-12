@@ -17,7 +17,7 @@ class NoteController extends BaseController
 {
     public function index()
     {
-        $datas = Note::orderBy('id','desc')->paginate(15);
+        $datas = Note::orderBy('id','desc')->paginate(env('page'));
         foreach($datas as $key)
         {
             if($key->category_id==Category::getone($key->category_id)[0]['id'])
@@ -101,7 +101,7 @@ class NoteController extends BaseController
     }
     public function recycle()
     {
-        $datas = Note::onlyTrashed()->paginate(15);
+        $datas = Note::onlyTrashed()->paginate(env('page'));
         return view('admin.note.recycle',compact('datas'));
     }
     public function restore($id)

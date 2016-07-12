@@ -21,30 +21,6 @@
                     <input name="title" class="form-control title" placeholder="请输入标题" value="{{$article->title}}">
                 </div>
             </div>
-            <div class="form-group row">
-                <div class="col-md-6">
-                    <label>分类</label>
-                    <span class="require">(*)</span>
-                    <select class="form-control" name="category_id" id="category_id">
-                        @foreach ($categories['top'] as $top_category)
-                            <option value="{{ $top_category->id }}"
-                                    @if(isset($article->category_id) && $top_category->id == $article->category_id)
-                                    selected
-                                    @endif
-                                    >{{ $top_category->name }}</option>
-                            @if(isset($categories['second'][$top_category->id]))
-                                @foreach ($categories['second'][$top_category->id] as $scategory)
-                                    <option value="{{ $scategory->id }}"
-                                            @if(isset($article->category_id) && $scategory->id == $article->category_id)
-                                            selected
-                                            @endif
-                                            >&nbsp;&nbsp;&nbsp;{{ $scategory->name }}</option>
-                                @endforeach
-                            @endif
-                        @endforeach
-                    </select>
-                </div>
-            </div>
             <div class="form-group">
                 <label>内容</label>
                 <span class="require">(*)</span>

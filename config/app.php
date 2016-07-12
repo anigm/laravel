@@ -39,8 +39,7 @@ return [
     |
     */
 
-    'url' => 'http://192.168.0.144',
-
+    'url' => env('APP_URL'),
     /*
     |--------------------------------------------------------------------------
     | Application Timezone
@@ -52,7 +51,7 @@ return [
     |
     */
 
-    'timezone' => 'Asia/Shanghai',
+    'timezone' => env('timezone'),
 
     /*
     |--------------------------------------------------------------------------
@@ -65,7 +64,7 @@ return [
     |
     */
 
-    'locale' => 'zh-CN',
+    'locale' => env('locale'),
 
     /*
     |--------------------------------------------------------------------------
@@ -78,7 +77,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'en',
+    'fallback_locale' => env('fallback_locale'),
 
     /*
     |--------------------------------------------------------------------------
@@ -175,6 +174,8 @@ return [
 
         'Spatie\Backup\BackupServiceProvider',
         'Backpack\BackupManager\BackupManagerServiceProvider',
+
+        Ender\UEditor\UEditorServiceProvider::class,
     ],
 
     /*
@@ -231,6 +232,7 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'EndaEditor' => YuanChao\Editor\Facade\EndaEditorFacade::class,
         'Image' => Intervention\Image\Facades\Image::class,
+        'UEditor'   => 'Ender\UEditor\UEditor'
     ],
 
 ];

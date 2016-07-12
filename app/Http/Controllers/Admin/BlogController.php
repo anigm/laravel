@@ -16,12 +16,11 @@ class BlogController extends BaseController
 {
     public function index()
     {
-        $blogs = Blog::orderBy('id','desc')->paginate(8);
+        $blogs = Blog::orderBy('id','desc')->paginate(env('page'));
         return view('admin.blog.index',compact('blogs'));
     }
     public function create(Request $input)
     {
-        //  http://192.168.0.144/plugin/ckeditor/plugins/image/images/noimage.png?t=EAPE
         $data = $input->only('parent_id');
         $columns = $this->getCategoryOptions();
         return view('admin.blog.create', compact('data', 'columns'));
@@ -166,7 +165,7 @@ class BlogController extends BaseController
     }
     public function recycle()
     {
-        $blogs = Blog::onlyTrashed()->paginate(15);
+        $blogs = Blog::onlyTrashed()->paginate(env('page'));
         return view('admin.blog.recycle',compact('blogs'));
     }
     public function restore($id)

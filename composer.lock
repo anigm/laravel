@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "83c07e3cd2030366ec8d540772a644b5",
-    "content-hash": "f2804caa880494bafb3f0ad30757138e",
+    "hash": "f944e331401d426083e23c818b74c85a",
+    "content-hash": "a45613d8830ac486270dc583721a2643",
     "packages": [
         {
             "name": "arcanedev/log-viewer",
@@ -614,6 +614,54 @@
                 "string"
             ],
             "time": "2015-11-06 14:35:42"
+        },
+        {
+            "name": "ender/laravel-ueditor",
+            "version": "v0.8.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/argb/laravel-ueditor.git",
+                "reference": "de6e12d80cc21cce12fb947cdcf4d7b935cae9a2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://packagist.phpcomposer.com/files/argb/laravel-ueditor/de6e12d80cc21cce12fb947cdcf4d7b935cae9a2.zip",
+                "reference": "de6e12d80cc21cce12fb947cdcf4d7b935cae9a2",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/config": "~5.0",
+                "illuminate/support": "~5.0",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Ender\\UEditor\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "ender",
+                    "email": "ender0421@gmail.com"
+                }
+            ],
+            "description": "A laravel package of ueditor,which is baidu's open source WYSIWYG editor",
+            "homepage": "https://www.bigfeettrip.com",
+            "keywords": [
+                "editor",
+                "laravel",
+                "ueditor",
+                "wysiwyg"
+            ],
+            "time": "2015-06-06 16:36:13"
         },
         {
             "name": "fzaninotto/faker",
@@ -2127,23 +2175,23 @@
         },
         {
             "name": "swiftmailer/swiftmailer",
-            "version": "v5.4.2",
+            "version": "v5.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/swiftmailer/swiftmailer.git",
-                "reference": "d8db871a54619458a805229a057ea2af33c753e8"
+                "reference": "4cc92842069c2bbc1f28daaaf1d2576ec4dfe153"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://packagist.phpcomposer.com/files/swiftmailer/swiftmailer/d8db871a54619458a805229a057ea2af33c753e8.zip",
-                "reference": "d8db871a54619458a805229a057ea2af33c753e8",
+                "url": "https://packagist.phpcomposer.com/files/swiftmailer/swiftmailer/4cc92842069c2bbc1f28daaaf1d2576ec4dfe153.zip",
+                "reference": "4cc92842069c2bbc1f28daaaf1d2576ec4dfe153",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
             "require-dev": {
-                "mockery/mockery": "~0.9.1,<0.9.4"
+                "mockery/mockery": "~0.9.1"
             },
             "type": "library",
             "extra": {
@@ -2176,7 +2224,7 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2016-05-01 08:45:47"
+            "time": "2016-07-08 11:51:25"
         },
         {
             "name": "symfony/class-loader",
@@ -4364,16 +4412,16 @@
         },
         {
             "name": "recca0120/laravel-tracy",
-            "version": "v1.5.7",
+            "version": "v1.5.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/recca0120/laravel-tracy.git",
-                "reference": "4a9ce90a266c99d74bb4e621b10bc6a4386d9a94"
+                "reference": "8e0f2bb442d6337876ccb4bde787a818e873bae6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://packagist.phpcomposer.com/files/recca0120/laravel-tracy/4a9ce90a266c99d74bb4e621b10bc6a4386d9a94.zip",
-                "reference": "4a9ce90a266c99d74bb4e621b10bc6a4386d9a94",
+                "url": "https://packagist.phpcomposer.com/files/recca0120/laravel-tracy/8e0f2bb442d6337876ccb4bde787a818e873bae6.zip",
+                "reference": "8e0f2bb442d6337876ccb4bde787a818e873bae6",
                 "shasum": ""
             },
             "require": {
@@ -4423,20 +4471,20 @@
                 "tracy",
                 "webprofiler"
             ],
-            "time": "2016-07-08 00:52:24"
+            "time": "2016-07-11 17:01:29"
         },
         {
             "name": "recca0120/terminal",
-            "version": "v1.5.1",
+            "version": "v1.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/recca0120/laravel-terminal.git",
-                "reference": "a9cce1e0e24a010d971b3ab5cd2a77d76dfd07d0"
+                "reference": "4abbc2d725ad28a991c936cc90d7562e5632b5ee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://packagist.phpcomposer.com/files/recca0120/laravel-terminal/a9cce1e0e24a010d971b3ab5cd2a77d76dfd07d0.zip",
-                "reference": "a9cce1e0e24a010d971b3ab5cd2a77d76dfd07d0",
+                "url": "https://packagist.phpcomposer.com/files/recca0120/laravel-terminal/4abbc2d725ad28a991c936cc90d7562e5632b5ee.zip",
+                "reference": "4abbc2d725ad28a991c936cc90d7562e5632b5ee",
                 "shasum": ""
             },
             "require": {
@@ -4483,7 +4531,7 @@
                 "web",
                 "web artisan"
             ],
-            "time": "2016-07-04 20:06:19"
+            "time": "2016-07-11 16:02:40"
         },
         {
             "name": "sebastian/comparator",

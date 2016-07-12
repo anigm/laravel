@@ -92,8 +92,6 @@ Route::group(['middleware' => ['web'], 'namespace' => 'Admin', 'prefix' => 'admi
     Route::get('tags/destroy/{id}/','TagController@destroy');
     Route::resource('tags','TagController');
 
-    Route::resource('column','ColumnController');
-
     Route::get('/upload', ['as' => 'admin.upload', 'uses' => 'UploadController@index']);
     Route::get('/logs', ['as' => 'admin.logs', 'uses' => '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index']);
 
@@ -136,13 +134,24 @@ Route::group(['middleware' => ['web'], 'namespace' => 'Admin', 'prefix' => 'admi
     //Route::get('article/restore/{id}/',['as'=>'admin.article.restore','uses'=>'ArticleController@restore']);
     //Route::get('article/delete/{id}/',['as'=>'admin.article.delete','uses'=>'ArticleController@delete']);
     //Route::get('/', ['as' => 'upload', 'uses' => 'ImageController@getUpload']);
-    //Route::get('upload', 'UploadController@index');
+    Route::get('upload', 'UploadController@index');
 
 //    Route::get('log-viewer');
     Route::get('system/base', ['as' => 'admin.system.base', 'uses' => 'SystemController@base']);
+    Route::post('system/del', ['as' => 'admin.system.del', 'uses' => 'SystemController@del']);
+    Route::post('system/edit', ['as' => 'admin.system.edit', 'uses' => 'SystemController@edit']);
     
 //    Route::resource('logviewer', '\Arcanedev\LogViewer\Http\Controllers\LogViewerController@index');
     Route::resource('plugin/filemanager/show', 'UsersController');
+
+
+//    $uploadRoutes=$routeName=config('ueditor.upload_routes_config_map');
+//    $routeName=config('ueditor.upload_route');
+//    $middleware=config('ueditor.core.route.middleware');
+//    foreach($uploadRoutes as $routeName=>$configName){
+//        Route::any($routeName,['middleware'=> $middleware,'uses'=>'Ender\UEditor\UEditorController@server']);
+//    }
+
 });
 
 Route::get('/admin', function ()

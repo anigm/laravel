@@ -8,23 +8,9 @@
     <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}" type="image/png">
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
     <title>后台管理</title>
-    {{--<link href="{{ asset('admin-assets/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />--}}
-            <!-- Font Awesome Icons -->
-    {{--<link href="{{ asset('admin-assets/dist/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css" />--}}
-            <!-- Ionicons -->
-    {{--<link href="{{ asset('admin-assets/dist/css/ionicons.min.css') }}" rel="stylesheet" type="text/css" />--}}
-            <!-- Theme style -->
     <link href="{{ asset('admin-assets/dist/css/AdminLTE.min.css') }}" rel="stylesheet" type="text/css" />
-    <!-- Select2 -->
     <link href="{{ asset('admin-assets/plugins/select2/select2.min.css') }}" rel="stylesheet" type="text/css" />
-    {{--<link href="{{ asset('admin-assets/dist/css/skins/skin-blue.min.css')}}" rel="stylesheet" type="text/css" />--}}
-    {{--<link href="{{ asset('admin-assets/bootstrap/css/common.css')}}" rel="stylesheet" type="text/css" />--}}
-            <!--[if lt IE 9]>
-    <!--<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>-->
-    <!--<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>-->
-    <![endif]-->
     <script src="{{ asset('admin-assets/plugins/jQuery/jQuery-2.1.4.min.js') }}" type="text/javascript"></script>
-    {{--<script src="{{ asset('admin-assets/bootstrap/js/bootstrap.min.js') }}" type="text/javascript"></script>--}}
     @section('css')
         <link href="{{ asset('css/style.default.css') }}" rel="stylesheet">
         <link href="{{ asset('css/jquery.datatables.css') }}" rel="stylesheet">
@@ -36,13 +22,11 @@
         <![endif]-->
 </head>
 <body>
-<div id="preloader">
-    <div id="status"><i class="fa fa-spinner fa-spin"></i></div>
-</div>
+<div id="preloader"><div id="status"><i class="fa fa-spinner fa-spin"></i></div></div>
 <section>
     <div class="leftpanel">
         <div class="logopanel">
-            <h1><span>[</span> <a href="/admin/home">后台管理设置</a> <span>]</span></h1>
+            <h1><span>[</span> <a href="/admin/home">{{ trans('admin.base.Management settings')}}</a> <span>]</span></h1>
         </div>{{Auth::getUser()}}
         <div class="leftpanelinner">
             <ul class="nav nav-pills nav-stacked nav-bracket">
@@ -55,7 +39,7 @@
         <div class="headerbar">
             <a class="menutoggle"><i class="fa fa-bars"></i></a>
             <form class="searchform" action="index.html" method="post">
-                <input type="text" class="form-control" name="keyword" placeholder="搜索   ..."/>
+                <input type="text" class="form-control" name="keyword" placeholder="{{ trans('admin.base.search')}}   ..."/>
             </form>
             <div class="header-right">
                 <ul class="headermenu">
@@ -67,7 +51,7 @@
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
-                                <li><a href="{{ url('admin/logout ') }}"><i class="glyphicon glyphicon-log-out"></i> 退出</a>
+                                <li><a href="{{ url('admin/logout ') }}"><i class="glyphicon glyphicon-log-out"></i>{{ trans('admin.base.Sign out')}}</a>
                                 </li>
                             </ul>
                         </div>
@@ -114,7 +98,7 @@
     $(function ()
     {
         $("#tag_list").select2({
-            placeholder:'选择标签',
+            placeholder:'{{ trans('admin.base.Select tag')}}',
             tags:true
         });
     });

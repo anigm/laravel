@@ -35,7 +35,7 @@ class ArticleController extends BaseController
     }
     public function index()
     {
-        $articles = Article::orderBy('id','desc')->paginate(15);
+        $articles = Article::orderBy('id','desc')->paginate(env('page'));
         return view('admin.articles.index',compact('articles'));
     }
     public function create()
@@ -65,7 +65,6 @@ class ArticleController extends BaseController
     public function edit($id)
     {
         $article = Article::findOrFail($id);
-        $categories = Category::getLeveledCategories();
         $tags = Tag::all();
         $article_tags = Article::findOrFail($id)->tags->toArray();
         foreach ($article_tags as $article_tag)
@@ -73,7 +72,7 @@ class ArticleController extends BaseController
             $ctags[]=$article_tag['pivot']['tag_id'];
         }
         $article_tags = empty($ctags) ? array('0') :$ctags;
-        return view('admin.articles.edit',compact('categories','tags','article','article_tags'));
+        return view('admin.articles.edit',compact('tags','article','article_tags'));
     }
     public function update(Request $request, $id)
     {
@@ -109,7 +108,7 @@ class ArticleController extends BaseController
     }
     public function recycle()
     {
-        $articles = Article::onlyTrashed()->paginate(15);
+        $articles = Article::onlyTrashed()->paginate(env('page'));
         return view('admin.articles.recycle',compact('articles'));
     }
     public function restore($id)

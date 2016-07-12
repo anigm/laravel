@@ -16,10 +16,10 @@
             <table class="table table-hover">
                 <tr>
                     <th>ID</th>
-                    <th>标题</th>
-                    <th>作者</th>
-                    <th>更新时间</th>
-                    <th>操作</th>
+                    <th>{{trans('admin.base.title')}}</th>
+                    <th>{{trans('admin.base.author')}}</th>
+                    <th>{{trans('admin.base.Update time')}}</th>
+                    <th>{{trans('admin.base.operation')}}</th>
                 </tr>
                 @foreach($datas as $data)
                     <tr>
@@ -28,8 +28,8 @@
                         <td><a href="#">{{ $data->user['name']}}</a></td>
                         <td>{{ $data->updated_at }}</td>
                         <td>
-                            <a href="{{ url('admin/note/restore/'.$data->id)  }}" class="btn btn-info btn-primary btn-sm iframe cboxElement"><span class="glyphicon glyphicon-pencil"></span> 恢复</a>
-                            <a href="{{ url('admin/note/delete/'.$data->id)  }}" class="btn btn-info btn-danger btn-sm iframe cboxElement"><span class="glyphicon glyphicon-trash"></span> 彻底删除</a>
+                            <a href="{{ url('admin/note/restore/'.$data->id)  }}" class="btn btn-info btn-primary btn-sm iframe cboxElement"><span class="glyphicon glyphicon-pencil"></span>{{trans('admin.base.recovery')}}</a>
+                            <a href="{{ url('admin/note/delete/'.$data->id)  }}" class="btn btn-info btn-danger btn-sm iframe cboxElement"><span class="glyphicon glyphicon-trash"></span>{{trans('admin.base.Remove')}}</a>
                         </td>
                     </tr>
                 @endforeach

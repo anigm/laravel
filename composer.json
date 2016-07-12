@@ -24,7 +24,8 @@
         "kalnoy/nestedset": "^4.1",
         "suin/php-rss-writer": "^1.4",
         "intervention/image": "^2.3",
-        "arcanedev/log-viewer": "~3.0"
+        "arcanedev/log-viewer": "~3.0",
+        "ender/laravel-ueditor": "0.8.*"
     },
     "require-dev": {
         "mockery/mockery": "0.9.*",

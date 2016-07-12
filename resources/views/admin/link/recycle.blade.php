@@ -14,25 +14,25 @@
     <div class="box">
         <div class="box-body">
             <table class="table table-hover">
-                <tr>
-                    <th>ID</th>
-                    <th>名称</th>
-                    <th>URL</th>
-                    <th>图片</th>
-                    <th>操作</th>
-                </tr>
-                @foreach($links as $link)
-                    <tr>
-                        <td>{{$link->id}}</td>
-                        <td>{{$link->name}}</td>
-                        <td>{{$link->url}}</td>
-                        <td>@if ($link->image)<img src="/{{ $link->image}}" width="20" height="20">@else 无图片 @endif</td>
-                        <td>
-                            <a href="{{ url('admin/link/restore/'.$link->id) }}" class="btn btn-info btn-primary btn-sm iframe cboxElement"><span class="glyphicon glyphicon-pencil"></span> 恢复</a>
-                            <a href="{{ url('admin/link/delete/'.$link->id) }}" class="btn btn-info btn-danger btn-sm iframe cboxElement"><span class="glyphicon glyphicon-trash"></span> 彻底删除</a>
-                        </td>
-                    </tr>
-                @endforeach
+            <tr>
+            <th>ID</th>
+            <th>{{trans('admin.base.title')}}</th>
+            <th>URL</th>
+            <th>{{trans('admin.base.image')}}</th>
+            <th>{{trans('admin.base.operation')}}</th>
+            </tr>
+            @foreach($links as $link)
+            <tr>
+            <td>{{$link->id}}</td>
+            <td>{{$link->name}}</td>
+            <td>{{$link->url}}</td>
+            <td>@if ($link->image)<img src="/{{ $link->image}}" width="20" height="20">@else {{trans('admin.base.No image')}} @endif</td>
+            <td>
+            <a href="{{ url('admin/link/restore/'.$link->id) }}" class="btn btn-info btn-primary btn-sm iframe cboxElement"><span class="glyphicon glyphicon-pencil"></span>{{trans('admin.base.recovery')}}</a>
+            <a href="{{ url('admin/link/delete/'.$link->id) }}" class="btn btn-info btn-danger btn-sm iframe cboxElement"><span class="glyphicon glyphicon-trash"></span>{{trans('admin.base.Remove')}}</a>
+            </td>
+            </tr>
+            @endforeach
             </table>
         </div>
     </div>

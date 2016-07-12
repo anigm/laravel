@@ -16,17 +16,17 @@
             {!! Form::open( array('url' => route('admin.note.update',$data->id), 'method' => 'put') ) !!}
             <div class="form-group">
                 <div class="col-md-6">
-                    <label>标题</label>
+                    <label>{{trans('admin.base.title')}}</label>
                     <span class="require">(*)</span>
-                    <input name="title" class="form-control title" placeholder="请输入标题" value="{{$data->title}}">
+                    <input name="title" class="form-control title" value="{{$data->title}}">
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-6">
-                    <label>分类</label>
+                    <label>{{trans('admin.base.classification')}}</label>
                     <span class="require">(*)</span>
                     <select class="form-control" name="category_id" id="category_id">
-                        <option value="0">无父级</option>
+                        <option value="0">{{trans('admin.base.No parent')}}</option>
                         @if(count($categories)>0)
                             @foreach ($categories as $category)
                                 <option value="{{ $category->id }}" @if(isset($data->category_id) && $category->id == $data->category_id) selected @endif>
@@ -38,20 +38,53 @@
                     </select>
                 </div>
             </div>
-            <div class="form-group">
-                <div class="col-md-12">
-                    <label>内容</label>
-                    <span class="require">(*)</span>
-                    <div class="editor">
-                        <script src="{{ asset('plugin/ckeditor/ckeditor.js') }}"></script>
-                        {!! Form::textarea('content', $data->content, array('class'=>'form-control', 'id' => 'description', 'placeholder'=>'Description')) !!}
-                        @include('admin.vendor.endCKEditor')
+            @if(env('myedit')=='ckeditor')
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <label>{{trans('admin.base.content')}}</label>
+                        <span class="require">(*)</span>
+                        <div class="editor">
+                            <script src="{{ asset('plugin/ckeditor/ckeditor.js') }}"></script>
+                            {!! Form::textarea('content', $data->content, array('class'=>'form-control', 'id' => 'description', 'placeholder'=>'Description')) !!}
+                            @include('admin.vendor.endCKEditor')
+                        </div>
                     </div>
                 </div>
-            </div>
+            @elseif(env('myedit')=='mkdown')
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <label>{{trans('admin.base.content')}}</label>
+                        <span class="require">(*)</span>
+                        <div class="editor">
+                            @include('editor::head')
+                            {!! Form::textarea('description', '', ['class' => 'form-control','id'=>'myEditor']) !!}
+                        </div>
+                    </div>
+                </div>
+            @else
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <label>{{trans('admin.base.content')}}</label>
+                        <span class="require">(*)</span>
+                        <div class="editor">
+                            {!! UEditor::css() !!}
+                            <script type='text/plain' id='description' name='description' class='ueditor'></script>
+                            {!! UEditor::js() !!}
+                            <script type="text/javascript">
+                                var serverUrl=UE.getOrigin()+'/admin/ueditor/server'; //你的自定义上传路由
+                                var ue = UE.getEditor('description',{'serverUrl':serverUrl}); //如果不使用默认路由，就需要在初始化就设定这个值
+                                ue.ready(function()
+                                {
+                                    ue.execCommand('serverparam', '_token', '{{ csrf_token() }}');
+                                });
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            @endif
             <div class="form-group">
                 <div class="col-md-6">
-                    {!! Form::label('tag_list', '标签：') !!}
+                    {!! Form::label('tag_list', trans('admin.base.Label')) !!}
                     <select  id="tag_list" class="form-control" multiple="multiple" name="tag_list[]">
                         @foreach($tags as $tag)
                             <option value="{{$tag->id}}" @if(in_array($tag->id,$article_tags)) selected @endif>{{$tag->name}}</option>
@@ -63,7 +96,7 @@
             <div class="form-group">
                 <div class="col-md-4">
                     <span class="btn-space">
-                        <input class="btn btn-primary" type="submit" name="submit" value="提交">
+                        <input class="btn btn-primary" type="submit" name="submit" value="{{trans('admin.base.Submit')}}">
                     </span>
                 </div>
             </div>
