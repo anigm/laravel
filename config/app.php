@@ -109,6 +109,8 @@ return [
 
     'log' => env('APP_LOG', 'daily'),
 
+    'theme'=>env('THEME'),
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers

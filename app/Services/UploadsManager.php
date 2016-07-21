@@ -72,9 +72,7 @@ class UploadsManager
   }
   public function fileWebpath($path)
   {
-    //print_r(config('localfile.uploads.webpath'));
     $path = rtrim(config('localfile.uploads.webpath'), '/') . '/' .ltrim($path, '/');
-    //$path = rtrim(config('blog.uploads.webpath'), '/') . '/' .ltrim($path, '/');
     return url($path);
   }
   public function fileMimeType($path)

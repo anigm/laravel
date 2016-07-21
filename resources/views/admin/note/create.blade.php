@@ -38,6 +38,18 @@
                     </select>
                 </div>
             </div>
+            <div class="form-group">
+                <div class="col-md-6">
+                    {!! Form::label('tag_list', trans('admin.base.Label')) !!}
+                    {!! Form::select('tag_list[]',$tags,null,['id' => 'tag_list','class' => 'form-control','multiple']) !!}
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-6">
+                    {!! Form::label('tag_list', trans('admin.base.summary')) !!}
+                    {!! Form::textarea('summary',null,['id' => 'summary','class' => 'form-control']) !!}
+                </div>
+            </div>
             @if(env('myedit')=='ckeditor')
             <div class="form-group">
                 <div class="col-md-12">
@@ -82,12 +94,6 @@
                     </div>
                 </div>
             @endif
-            <div class="form-group">
-                <div class="col-md-6">
-                    {!! Form::label('tag_list', trans('admin.base.Label')) !!}
-                    {!! Form::select('tag_list[]',$tags,null,['id' => 'tag_list','class' => 'form-control','multiple']) !!}
-                </div>
-            </div>
             <input type="hidden" name="user_id" value="{{Auth::guard('admin')->user()->id}}">
             <div class="form-group">
                 <div class="col-md-4">

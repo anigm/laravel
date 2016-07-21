@@ -37,6 +37,11 @@
                         <option value='mkdown' @if($value[1]=='mkdown') selected @endif>mkdown</option>
                         <option value='ueditor' @if($value[1]=='ueditor') selected @endif>ueditor</option>
                     </select>
+                @elseif($value[0]=='THEME')
+                    <select name="{{$value[1]}}" class="form-control">
+                        <option value='no7' @if($value[1]=='no7') selected @endif>no7</option>
+                        <option value='qzhai' @if($value[1]=='qzhai') selected @endif>qzhai</option>
+                    </select>
                 @else
                     <input name="{{$value[0]}}" value="{{$value[1]}}" class="form-control title" placeholder="请输入标签">
                 @endif

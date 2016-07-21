@@ -39,6 +39,7 @@ return [
         'download'=>'下载',
         'browse'=>'浏览',
         'Create date'=>'创建日期',
+        'summary'=>'简介',
     ),
     'upload'=>array(
         'create folder'=>'创建文件夹',

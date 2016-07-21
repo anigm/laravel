@@ -28,5 +28,6 @@ return [
         'UPLOAD_ICON_SIZE'=>'上传图片缩略图地址',
         'myedit'=>'编辑器',
         'page'=>'分页',
+        'THEME'=>'主题'
     ),
 ];

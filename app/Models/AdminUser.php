@@ -15,5 +15,4 @@ class AdminUser extends Authenticatable
         'password',
         'remember_token',
     ];
-
 }

@@ -25,17 +25,34 @@
 |
 */
 
-Route::get('/', 'IndexController@index');
-Route::get('/list/{id}', 'IndexController@lists');
 
-Route::get('/column/{id}','IndexController@column');
 
-Route::get('/about/{id}','IndexController@about');
-
-Route::group(['middleware' => 'web'], function () {
+Route::group(['middleware' => 'web'], function ()
+{
     Route::auth();
 
     Route::get('/home', 'HomeController@index');
+
+    Route::get('/', 'IndexController@index');
+    Route::get('/list/{id}', 'IndexController@lists');
+
+    Route::get('/tag/{id}','IndexController@tag');
+
+    Route::get('/tags/','IndexController@tags');
+
+    Route::get('/column/{id}','IndexController@column');
+
+    Route::get('/about/{id}','IndexController@about');
+
+    Route::get('/category/{id}', 'IndexController@category');
+
+    Route::get('/guestbook/','IndexController@guestbook');
+
+    Route::post('/comment/{id}', 'IndexController@comment');
+
+    Route::get('/archives/','IndexController@archives');
+
+    Route::get('/archive/{id}', 'IndexController@archive');
 });
 
 Route::group(['middleware' => ['web'], 'namespace' => 'Admin', 'prefix' => 'admin'], function () {
@@ -134,24 +151,15 @@ Route::group(['middleware' => ['web'], 'namespace' => 'Admin', 'prefix' => 'admi
     //Route::get('article/restore/{id}/',['as'=>'admin.article.restore','uses'=>'ArticleController@restore']);
     //Route::get('article/delete/{id}/',['as'=>'admin.article.delete','uses'=>'ArticleController@delete']);
     //Route::get('/', ['as' => 'upload', 'uses' => 'ImageController@getUpload']);
-    Route::get('upload', 'UploadController@index');
+    //Route::get('upload', 'UploadController@index');
 
 //    Route::get('log-viewer');
     Route::get('system/base', ['as' => 'admin.system.base', 'uses' => 'SystemController@base']);
     Route::post('system/del', ['as' => 'admin.system.del', 'uses' => 'SystemController@del']);
     Route::post('system/edit', ['as' => 'admin.system.edit', 'uses' => 'SystemController@edit']);
-    
-//    Route::resource('logviewer', '\Arcanedev\LogViewer\Http\Controllers\LogViewerController@index');
+
+
     Route::resource('plugin/filemanager/show', 'UsersController');
-
-
-//    $uploadRoutes=$routeName=config('ueditor.upload_routes_config_map');
-//    $routeName=config('ueditor.upload_route');
-//    $middleware=config('ueditor.core.route.middleware');
-//    foreach($uploadRoutes as $routeName=>$configName){
-//        Route::any($routeName,['middleware'=> $middleware,'uses'=>'Ender\UEditor\UEditorController@server']);
-//    }
-
 });
 
 Route::get('/admin', function ()
@@ -159,8 +167,8 @@ Route::get('/admin', function ()
     return redirect('/admin/login');
     //return view('admin.welcome');
 });
-Route::group(['middleware' => 'web'], function () {
+Route::group(['middleware' => 'web'], function ()
+{
     Route::auth();
-
     Route::get('/home', 'HomeController@index');
 });
